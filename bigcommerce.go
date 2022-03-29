@@ -19,8 +19,8 @@ type BcModifier struct {
 		IsDefault bool        `json:"is_default"`
 		Adjusters struct {
 			Price struct {
-				Adjuster      string `json:"adjuster"`
-				AdjusterValue int    `json:"adjuster_value"`
+				Adjuster      string  `json:"adjuster"`
+				AdjusterValue float64 `json:"adjuster_value"`
 			} `json:"price"`
 			Weight             interface{} `json:"weight"`
 			ImageURL           string      `json:"image_url"`
