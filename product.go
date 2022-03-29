@@ -61,6 +61,10 @@ type Product struct {
 	Metafields                     []Metafield     `json:"metafields,omitempty"`
 	AdminGraphqlAPIID              string          `json:"admin_graphql_api_id,omitempty"`
 	Status                         string          `json:"status,omitempty"`
+
+	// TODO: big commerce merge cleanup
+	// Big commerce specific fields, to be removed
+	BcModifiers []BcModifier `json:"modifiers,omitempty"`
 }
 
 // The options provided by Shopify

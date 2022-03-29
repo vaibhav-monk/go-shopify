@@ -61,6 +61,9 @@ type Variant struct {
 	RequireShipping      bool             `json:"requires_shipping,omitempty"`
 	AdminGraphqlAPIID    string           `json:"admin_graphql_api_id,omitempty"`
 	Metafields           []Metafield      `json:"metafields,omitempty"`
+
+	// TODO: big commerce merge cleanup
+	BcOptionValues []BcOptionValues `json:"option_values,omitempty"`
 }
 
 // VariantResource represents the result from the variants/X.json endpoint
