@@ -2,14 +2,13 @@ package goshopify
 
 // BcModifier ...
 type BcModifier struct {
-	ID           int                    `json:"id"`
-	ProductID    int                    `json:"product_id"`
-	Name         string                 `json:"name"`
-	DisplayName  string                 `json:"display_name"`
-	Type         string                 `json:"type"`
-	Required     bool                   `json:"required"`
-	SortOrder    int                    `json:"sort_order"`
-	Config       map[string]interface{} `json:"config"`
+	ID           int    `json:"id"`
+	ProductID    int    `json:"product_id"`
+	Name         string `json:"name"`
+	DisplayName  string `json:"display_name"`
+	Type         string `json:"type"`
+	Required     bool   `json:"required"`
+	SortOrder    int    `json:"sort_order"`
 	OptionValues []struct {
 		ID        int         `json:"id"`
 		OptionID  int         `json:"option_id"`
