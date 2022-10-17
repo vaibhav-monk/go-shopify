@@ -75,6 +75,8 @@ type Client struct {
 
 	// A permanent access token
 	token string
+	// additional api features
+	apiFeatures string
 
 	// max number of retries, defaults to 0 for no retries see WithRetry option
 	retries  int
@@ -225,7 +227,19 @@ func (c *Client) NewRequest(method, relPath string, body, options interface{}) (
 	} else if c.app.Password != "" {
 		req.SetBasicAuth(c.app.ApiKey, c.app.Password)
 	}
+	if c.token != "" {
+		req.Header.Add("X-Shopify-Api-Features", c.apiFeatures)
+	}
 	return req, nil
+}
+
+// SetAPIFeatures ...
+func (c *Client) SetAPIFeatures(features string) {
+	c.apiFeatures = features
+}
+
+func (c *Client) SetTimeout(timeout int) {
+	c.Client.Timeout = time.Second * time.Duration(timeout)
 }
 
 // NewClient returns a new Shopify API client with an already authenticated shopname and
