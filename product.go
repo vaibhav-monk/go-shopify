@@ -40,6 +40,12 @@ type ProductServiceOp struct {
 
 // Product represents a Shopify product
 type Product struct {
+	ProductCommonFields
+	Variants []Variant `json:"variants,omitempty"`
+}
+
+// ProductCommonFields ... shared data between multiple product structs
+type ProductCommonFields struct {
 	ID                             int64           `json:"id,omitempty"`
 	Title                          string          `json:"title,omitempty"`
 	BodyHTML                       string          `json:"body_html,omitempty"`
@@ -52,7 +58,6 @@ type Product struct {
 	PublishedScope                 string          `json:"published_scope,omitempty"`
 	Tags                           string          `json:"tags,omitempty"`
 	Options                        []ProductOption `json:"options,omitempty"`
-	Variants                       []Variant       `json:"variants,omitempty"`
 	Image                          Image           `json:"image,omitempty"`
 	Images                         []Image         `json:"images,omitempty"`
 	TemplateSuffix                 string          `json:"template_suffix,omitempty"`
@@ -65,6 +70,11 @@ type Product struct {
 	// TODO: big commerce merge cleanup
 	// Big commerce specific fields, to be removed
 	BcModifiers []BcModifier `json:"modifiers,omitempty"`
+}
+
+// ProductWithContextualPrice represents a Shopify product with contextual price
+type ProductWithContextualPrice struct {
+	ProductCommonFields
 }
 
 // The options provided by Shopify
