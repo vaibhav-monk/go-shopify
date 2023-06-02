@@ -75,6 +75,7 @@ type ProductCommonFields struct {
 // ProductWithContextualPrice represents a Shopify product with contextual price
 type ProductWithContextualPrice struct {
 	ProductCommonFields
+	Variants []VariantWithContextualPrice `json:"variants,omitempty"`
 }
 
 // The options provided by Shopify
