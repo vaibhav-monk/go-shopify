@@ -31,40 +31,51 @@ type VariantServiceOp struct {
 	client *Client
 }
 
-// Variant represents a Shopify variant
-type Variant struct {
-	ID                   int64              `json:"id,omitempty"`
-	ProductID            int64              `json:"product_id,omitempty"`
-	Title                string             `json:"title,omitempty"`
-	Sku                  string             `json:"sku,omitempty"`
-	Position             int                `json:"position,omitempty"`
-	Grams                int                `json:"grams,omitempty"`
-	InventoryPolicy      string             `json:"inventory_policy,omitempty"`
-	Price                *decimal.Decimal   `json:"price,omitempty"`
-	CompareAtPrice       *decimal.Decimal   `json:"compare_at_price,omitempty"`
-	FulfillmentService   string             `json:"fulfillment_service,omitempty"`
-	InventoryManagement  string             `json:"inventory_management,omitempty"`
-	InventoryItemId      int64              `json:"inventory_item_id,omitempty"`
-	Option1              string             `json:"option1,omitempty"`
-	Option2              string             `json:"option2,omitempty"`
-	Option3              string             `json:"option3,omitempty"`
-	CreatedAt            *time.Time         `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time         `json:"updated_at,omitempty"`
-	Taxable              bool               `json:"taxable,omitempty"`
-	TaxCode              string             `json:"tax_code,omitempty"`
-	Barcode              string             `json:"barcode,omitempty"`
-	ImageID              int64              `json:"image_id,omitempty"`
-	InventoryQuantity    int                `json:"inventory_quantity,omitempty"`
-	Weight               *decimal.Decimal   `json:"weight,omitempty"`
-	WeightUnit           string             `json:"weight_unit,omitempty"`
-	OldInventoryQuantity int                `json:"old_inventory_quantity,omitempty"`
-	RequireShipping      bool               `json:"requires_shipping,omitempty"`
-	AdminGraphqlAPIID    string             `json:"admin_graphql_api_id,omitempty"`
-	Metafields           []Metafield        `json:"metafields,omitempty"`
-	PresentmentPrices    []PresentmentPrice `json:"presentment_prices,omitempty"`
+// VariantCommonFields ...
+type VariantCommonFields struct {
+	ID                   int64            `json:"id,omitempty"`
+	ProductID            int64            `json:"product_id,omitempty"`
+	Title                string           `json:"title,omitempty"`
+	Sku                  string           `json:"sku,omitempty"`
+	Position             int              `json:"position,omitempty"`
+	Grams                int              `json:"grams,omitempty"`
+	InventoryPolicy      string           `json:"inventory_policy,omitempty"`
+	Price                *decimal.Decimal `json:"price,omitempty"`
+	CompareAtPrice       *decimal.Decimal `json:"compare_at_price,omitempty"`
+	FulfillmentService   string           `json:"fulfillment_service,omitempty"`
+	InventoryManagement  string           `json:"inventory_management,omitempty"`
+	InventoryItemID      int64            `json:"inventory_item_id,omitempty"`
+	Option1              string           `json:"option1,omitempty"`
+	Option2              string           `json:"option2,omitempty"`
+	Option3              string           `json:"option3,omitempty"`
+	CreatedAt            *time.Time       `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
+	Taxable              bool             `json:"taxable,omitempty"`
+	TaxCode              string           `json:"tax_code,omitempty"`
+	Barcode              string           `json:"barcode,omitempty"`
+	ImageID              int64            `json:"image_id,omitempty"`
+	InventoryQuantity    int              `json:"inventory_quantity,omitempty"`
+	Weight               *decimal.Decimal `json:"weight,omitempty"`
+	WeightUnit           string           `json:"weight_unit,omitempty"`
+	OldInventoryQuantity int              `json:"old_inventory_quantity,omitempty"`
+	RequireShipping      bool             `json:"requires_shipping,omitempty"`
+	AdminGraphqlAPIID    string           `json:"admin_graphql_api_id,omitempty"`
+	Metafields           []Metafield      `json:"metafields,omitempty"`
 
 	// TODO: big commerce merge cleanup
 	BcOptionValues []BcOptionValues `json:"option_values,omitempty"`
+}
+
+// Variant represents a Shopify variant
+type Variant struct {
+	VariantCommonFields
+}
+
+// VariantWithContextualPrice ...
+type VariantWithContextualPrice struct {
+	VariantCommonFields
+	ContextualPrice          *decimal.Decimal `json:"contextual_price,omitempty"`
+	ContextualCompareAtPrice *decimal.Decimal `json:"contextual_compare_at_price,omitempty"`
 }
 
 // PriceWithCurrency ...
