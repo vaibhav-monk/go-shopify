@@ -21,7 +21,7 @@ type Currency struct {
 
 // CurrencyResource ... Represents the result from the admin/shop.json endpoint
 type CurrencyResource struct {
-	Currencies []Currency `json:"currency"`
+	Currencies []Currency `json:"currencies"`
 }
 
 // Get shop
