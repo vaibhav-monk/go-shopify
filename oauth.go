@@ -169,7 +169,7 @@ func (app App) GetOfflineAccessToken(shopName, sessionToken string) (string, err
 		SubjectToken:       sessionToken,
 		SubjecyTokenType:   "urn:ietf:params:oauth:token-type:id_token",
 		GrantType:          "urn:ietf:params:oauth:grant-type:token-exchange",
-		RequestedTokenType: "urn:shopify:params:oauth:token-type:online-access-token",
+		RequestedTokenType: "urn:shopify:params:oauth:token-type:offline-access-token",
 	}
 
 	client := app.Client
