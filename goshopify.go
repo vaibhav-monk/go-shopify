@@ -111,7 +111,6 @@ type Client struct {
 	StorefrontAccessToken      StorefrontAccessTokenService
 	Collect                    CollectService
 	Collection                 CollectionService
-	Location                   LocationService
 	DiscountCode               DiscountCodeService
 	PriceRule                  PriceRuleService
 	InventoryItem              InventoryItemService
@@ -298,7 +297,6 @@ func NewClient(app App, shopName, token string, opts ...Option) *Client {
 	c.UsageCharge = &UsageChargeServiceOp{client: c}
 	c.Collect = &CollectServiceOp{client: c}
 	c.Collection = &CollectionServiceOp{client: c}
-	c.Location = &LocationServiceOp{client: c}
 	c.DiscountCode = &DiscountCodeServiceOp{client: c}
 	c.PriceRule = &PriceRuleServiceOp{client: c}
 	c.InventoryItem = &InventoryItemServiceOp{client: c}
