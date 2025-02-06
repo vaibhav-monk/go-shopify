@@ -95,9 +95,8 @@ type Order struct {
 	ConfirmationNumber string           `json:"confirmation_number"`
 	LineItems          []LineItem       `json:"line_items,omitempty"`
 	SourceName         string           `json:"source_name,omitempty"`
-	Tags               string           `json:"tags,omitempty"`
-	CheckoutToken      string           `json:"checkout_token,omitempty"`
-	Metafields         []Metafield      `json:"metafields,omitempty"`
+	Tags               string           `json:"tags,omitempty"` // convert to []string
+	// Metafields []Metafield `json:"metafields,omitempty"` // remove and check
 }
 
 type Address struct {
@@ -147,8 +146,7 @@ type LineItem struct {
 	ProductExists              bool             `json:"product_exists,omitempty"`
 	FulfillableQuantity        int              `json:"fulfillable_quantity,omitempty"`
 	// Grams                      int              `json:"grams,omitempty"`
-	FulfillmentStatus string    `json:"fulfillment_status,omitempty"`
-	TaxLines          []TaxLine `json:"tax_lines,omitempty"`
+	FulfillmentStatus string `json:"fulfillment_status,omitempty"`
 	// OriginLocation             *Address         `json:"origin_location,omitempty"`
 	// DestinationLocation        *Address         `json:"destination_location,omitempty"`
 	AppliedDiscount *AppliedDiscount `json:"applied_discount,omitempty"`

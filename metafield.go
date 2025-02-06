@@ -38,9 +38,9 @@ type MetafieldServiceOp struct {
 
 // Metafield represents a Shopify metafield.
 type Metafield struct {
-	ID    int64       `json:"id,omitempty"`
-	Key   string      `json:"key,omitempty"`
-	Value interface{} `json:"value,omitempty"`
+	ID    int64  `json:"id,omitempty"`
+	Key   string `json:"key,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 // MetafieldResource represents the result from the metafields/X.json endpoint
