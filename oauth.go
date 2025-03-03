@@ -187,3 +187,23 @@ func (app App) GetOfflineAccessToken(shopName, sessionToken string) (string, err
 	return token.Token, err
 
 }
+
+// Uninstall ... Uninstall the app from the shop
+func (app App) Uninstall(shopName, accessToken string) error {
+	client := app.Client
+	if client == nil {
+		client = NewClient(app, shopName, accessToken)
+	}
+
+	req, err := client.NewRequest("DELETE", "admin/api_permissions/current.json", nil, nil)
+	if err != nil {
+		return err
+	}
+
+	err = client.Do(req, nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
