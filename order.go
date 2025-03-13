@@ -82,22 +82,38 @@ type OrderCancelOptions struct {
 
 // Order represents a Shopify order
 type Order struct {
-	ID                 int64            `json:"id,omitempty"`
-	Name               string           `json:"name,omitempty"`
-	Email              string           `json:"email,omitempty"`
-	CreatedAt          *time.Time       `json:"created_at,omitempty"`
-	UpdatedAt          *time.Time       `json:"updated_at,omitempty"`
-	CancelledAt        *time.Time       `json:"cancelled_at,omitempty"`
-	ProcessedAt        *time.Time       `json:"processed_at,omitempty"`
-	SubtotalPrice      *decimal.Decimal `json:"subtotal_price,omitempty"`
-	TaxesIncluded      bool             `json:"taxes_included,omitempty"`
-	FinancialStatus    string           `json:"financial_status,omitempty"`
-	ConfirmationNumber string           `json:"confirmation_number"`
-	LineItems          []LineItem       `json:"line_items,omitempty"`
-	SourceName         string           `json:"source_name,omitempty"`
-	Tags               string           `json:"tags,omitempty"`
-	CheckoutToken      string           `json:"checkout_token,omitempty"`
-	Metafields         []Metafield      `json:"metafields,omitempty"`
+	ID                   int64                 `json:"id,omitempty"`
+	Name                 string                `json:"name,omitempty"`
+	Email                string                `json:"email,omitempty"`
+	CreatedAt            *time.Time            `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time            `json:"updated_at,omitempty"`
+	CancelledAt          *time.Time            `json:"cancelled_at,omitempty"`
+	ProcessedAt          *time.Time            `json:"processed_at,omitempty"`
+	SubtotalPrice        *decimal.Decimal      `json:"subtotal_price,omitempty"`
+	TaxesIncluded        bool                  `json:"taxes_included,omitempty"`
+	FinancialStatus      string                `json:"financial_status,omitempty"`
+	ConfirmationNumber   string                `json:"confirmation_number"`
+	TotalPrice           string                `json:"total_price"`
+	TotalDiscounts       string                `json:"total_discounts"`
+	Currency             string                `json:"currency"`
+	LineItems            []LineItem            `json:"line_items,omitempty"`
+	SourceName           string                `json:"source_name,omitempty"`
+	Tags                 string                `json:"tags,omitempty"`
+	CheckoutToken        string                `json:"checkout_token,omitempty"`
+	Metafields           []Metafield           `json:"metafields,omitempty"`
+	DiscountApplications []DiscountApplication `json:"discount_applications"`
+}
+
+// DiscountApplication ...
+type DiscountApplication struct {
+	TargetType       string `json:"target_type"`
+	Type             string `json:"type"`
+	Value            string `json:"value"`
+	ValueType        string `json:"value_type"`
+	AllocationMethod string `json:"allocation_method"`
+	TargetSelection  string `json:"target_selection"`
+	Title            string `json:"title"`
+	Code             string `json:"code"`
 }
 
 type Address struct {
@@ -151,8 +167,8 @@ type LineItem struct {
 	TaxLines          []TaxLine `json:"tax_lines,omitempty"`
 	// OriginLocation             *Address         `json:"origin_location,omitempty"`
 	// DestinationLocation        *Address         `json:"destination_location,omitempty"`
-	AppliedDiscount *AppliedDiscount `json:"applied_discount,omitempty"`
-	// DiscountAllocations        []DiscountAllocations `json:"discount_allocations,omitempty"`
+	AppliedDiscount     *AppliedDiscount      `json:"applied_discount,omitempty"`
+	DiscountAllocations []DiscountAllocations `json:"discount_allocations,omitempty"`
 }
 
 type DiscountAllocations struct {
