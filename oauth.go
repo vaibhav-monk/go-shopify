@@ -188,6 +188,54 @@ func (app App) GetOfflineAccessToken(shopName, sessionToken string) (string, err
 
 }
 
+// GetNameAndEmailFromOnlineAccessToken ...
+func (app App) GetNameAndEmailFromOnlineAccessToken(shopName, sessionToken string) (string, string, error) {
+
+	type Token struct {
+		AssociatedUser struct {
+			ID            int64  `json:"id"`
+			FirstName     string `json:"first_name"`
+			LastName      string `json:"last_name"`
+			Email         string `json:"email"`
+			AccountOwner  bool   `json:"account_owner"`
+			Locale        string `json:"locale"`
+			Collaborator  bool   `json:"collaborator"`
+			EmailVerified bool   `json:"email_verified"`
+		} `json:"associated_user"`
+	}
+
+	var data = struct {
+		ClientID           string `json:"client_id"`
+		ClientSecret       string `json:"client_secret"`
+		SubjectToken       string `json:"subject_token"`
+		SubjecyTokenType   string `json:"subject_token_type"`
+		GrantType          string `json:"grant_type"`
+		RequestedTokenType string `json:"requested_token_type"`
+	}{
+		ClientID:           app.ApiKey,
+		ClientSecret:       app.ApiSecret,
+		SubjectToken:       sessionToken,
+		SubjecyTokenType:   "urn:ietf:params:oauth:token-type:id_token",
+		GrantType:          "urn:ietf:params:oauth:grant-type:token-exchange",
+		RequestedTokenType: "urn:shopify:params:oauth:token-type:online-access-token",
+	}
+
+	client := app.Client
+	if client == nil {
+		client = NewClient(app, shopName, "")
+	}
+
+	req, err := client.NewRequest("POST", accessTokenRelPath, data, nil)
+	if err != nil {
+		return "", "", err
+	}
+
+	token := new(Token)
+	err = client.Do(req, token)
+	return token.AssociatedUser.FirstName, token.AssociatedUser.Email, err
+
+}
+
 // Uninstall ... Uninstall the app from the shop
 func (app App) Uninstall(shopName, accessToken string) error {
 	client := app.Client
