@@ -66,6 +66,7 @@ type ProductCommonFields struct {
 	Metafields                     []Metafield     `json:"metafields,omitempty"`
 	AdminGraphqlAPIID              string          `json:"admin_graphql_api_id,omitempty"`
 	Status                         string          `json:"status,omitempty"`
+	RequiresSellingPlan            bool            `json:"requiresSellingPlan,omitempty"`
 
 	// TODO: big commerce merge cleanup
 	// Big commerce specific fields, to be removed
